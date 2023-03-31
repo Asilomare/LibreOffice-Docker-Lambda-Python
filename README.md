@@ -25,10 +25,11 @@ LibreOffice requires font files to be present on the system in order to render d
 ## Usage
 
 The following are easiest from the cloud9 CLI, as AWSCLI and CDK are pre-installed and conifigured.
-To deploy this stack, navigate to the root directory of your CDK app and run the following commands:
+To deploy this stack, clone this repository, navigate to the root directory of your CDK app and run the following commands:
 
 ```sh
 cdk bootstrap
+pip install -r requirements.txt
 cdk deploy
 ```
 
