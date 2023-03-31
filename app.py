@@ -3,7 +3,7 @@ import os
 
 import aws_cdk as cdk
 
-from pdfstack.PdfStack import PdfStack
+from pdfStack.PdfStack import PdfStack
 
 
 app = cdk.App()
