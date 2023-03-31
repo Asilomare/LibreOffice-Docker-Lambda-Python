@@ -1,4 +1,4 @@
-# Readme for PDF Conversion AWS CDK Stack
+# PDF Conversion AWS CDK Stack
 
 This is a CDK Stack that creates an S3 bucket and an AWS Lambda function to convert Microsoft Word documents (.doc and .docx) to PDFs using LibreOffice.
 This CDK Stack creates a lambda function from a locally built docker image, gives the function read & write permissions to a specified bucket, and sets up a trigger from the bucket, upon object create with certain suffixes (.doc, .docx) the lambda is invoked. 
