@@ -7,6 +7,7 @@ from aws_cdk import (
     App, Stack, Duration
 )
 
+# Change this value 
 _BUCKET_ = 'testbucket22245454123'
 
 class PdfStack(Stack):
@@ -14,14 +15,7 @@ class PdfStack(Stack):
         super().__init__(app, id)
 
         bucket = s3.Bucket.from_bucket_name(self, "internal_bucket_name", _BUCKET_)
-
         
-        #libre_layer = _lambda.LayerVersion.from_layer_version_arn(
-         #   self, 
-          #  "MyLayer", 
-          #  "arn:aws:lambda:us-east-1:764866452798:layer:libreoffice-brotli:1"
-        #)
-
         #lambda from docker image
         function = _lambda.DockerImageFunction(self, "pdfConverter",
             code=_lambda.DockerImageCode.from_image_asset(
@@ -31,8 +25,7 @@ class PdfStack(Stack):
                  "HOME": '/tmp',
                  "FONTCONFIG_FILE": "/var/task/fonts/fonts.conf"
             },
-            memory_size=1000,
-            
+            memory_size=1000,  
         )
         
         # The function needs to download and upload files
@@ -48,3 +41,9 @@ class PdfStack(Stack):
         bucket.add_object_created_notification(
            notification, s3.NotificationKeyFilter(suffix='.docx')
         )
+        """
+        TO ADD MORE SUFFIX TRIGGERS, ADD STATEMENT:
+        bucket.add_object_created_notification(
+           notification, s3.NotificationKeyFilter(suffix='SUFFIX_HERE')
+        )
+        """
