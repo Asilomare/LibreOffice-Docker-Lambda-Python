@@ -8,8 +8,6 @@ Once LibreOffice is loaded, the script downloads the event file -> converts to p
 
 ## Installation
 
-Before running this CDK script, you need to download the compressed tar stream for the LibreOffice binaries. You can get it from [here](https://github.com/shelfio/libreoffice-lambda-layer/blob/master/layer.tar.br.zip). Download `layer.tar.br.zip` then unzip and extract the `lo.tar.br` file from the archive and save it in /pdfstack/lambda_image/.
-
 You also need to modify the `_BUCKET_` variable in `PdfStack.py` with your own bucket name.
 
 ## Methods
