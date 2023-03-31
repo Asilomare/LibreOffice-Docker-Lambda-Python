@@ -19,7 +19,7 @@ class PdfStack(Stack):
         #lambda from docker image
         function = _lambda.DockerImageFunction(self, "pdfConverter",
             code=_lambda.DockerImageCode.from_image_asset(
-                directory="pdfstack/lambda_image/"),
+                directory="pdfStack/lambda_image/"),
             timeout=Duration.seconds(150),
             environment={ 
                  "HOME": '/tmp',
