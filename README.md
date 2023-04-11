@@ -1,3 +1,7 @@
+# Job Description
+
+I have code in Python for a program that converts documents from office formats to PDF. It uses the libreOffice Library. Can you help me get it packaged (perhaps in Docker?) and prepared so it can run on an AWS lambda flawlessly?
+
 # PDF Conversion AWS CDK Stack
 
 This is a CDK Stack that creates an S3 bucket and an AWS Lambda function to convert Microsoft Word documents (.doc and .docx) to PDFs using LibreOffice.
