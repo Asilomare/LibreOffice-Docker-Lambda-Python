@@ -1,0 +1,160 @@
+{
+  "version": "31.0.0",
+  "artifacts": {
+    "pdfStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "pdfStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "pdfStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "pdfStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ab16445787fd1e33c53b9c9e065200b796e7a2b3b5377f80fd53c1ffbc5a2dcd.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "pdfStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "pdfStack.assets"
+      ],
+      "metadata": {
+        "/pdfStack/pdfOutputBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pdfOutputBucket917D0501"
+          }
+        ],
+        "/pdfStack/pdfConvertFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pdfConvertFunctionServiceRole5106EF01"
+          }
+        ],
+        "/pdfStack/pdfConvertFunction/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pdfConvertFunctionServiceRoleDefaultPolicy4BEBA4BD"
+          }
+        ],
+        "/pdfStack/pdfConvertFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pdfConvertFunction11DA2083"
+          }
+        ],
+        "/pdfStack/api/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiC8550315"
+          }
+        ],
+        "/pdfStack/api/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiDeployment149F1294c4b9e28e9992097aaba52da216f3b6bc"
+          }
+        ],
+        "/pdfStack/api/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiDeploymentStageprod896C8101"
+          }
+        ],
+        "/pdfStack/api/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiEndpoint9349E63C"
+          }
+        ],
+        "/pdfStack/api/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproxy4EA44110"
+          }
+        ],
+        "/pdfStack/api/Default/{proxy+}/ANY/ApiPermission.pdfStackapiCE86AAB5.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproxyANYApiPermissionpdfStackapiCE86AAB5ANYproxyCA47CD15"
+          }
+        ],
+        "/pdfStack/api/Default/{proxy+}/ANY/ApiPermission.Test.pdfStackapiCE86AAB5.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproxyANYApiPermissionTestpdfStackapiCE86AAB5ANYproxy7B7C8F79"
+          }
+        ],
+        "/pdfStack/api/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiproxyANY7F13F09C"
+          }
+        ],
+        "/pdfStack/api/Default/ANY/ApiPermission.pdfStackapiCE86AAB5.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiANYApiPermissionpdfStackapiCE86AAB5ANY37438494"
+          }
+        ],
+        "/pdfStack/api/Default/ANY/ApiPermission.Test.pdfStackapiCE86AAB5.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiANYApiPermissionTestpdfStackapiCE86AAB5ANY4917D862"
+          }
+        ],
+        "/pdfStack/api/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "apiANYB3DF8C3C"
+          }
+        ],
+        "/pdfStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/pdfStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/pdfStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/pdfStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "pdfStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
