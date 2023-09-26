@@ -9,7 +9,7 @@ import subprocess
 from os import environ
 from lo_loader import load_libre_office
 
-s3 = boto3.client('s3', region='us-east-1')
+s3 = boto3.client('s3', region='us-east-2')
 bucket = environ['BUCKET']
 
 #Update with libreoffice exec path
