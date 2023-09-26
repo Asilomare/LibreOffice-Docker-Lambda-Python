@@ -15,7 +15,13 @@ class PdfStack(Stack):
     def __init__(self, app: App, id: str) -> None:
         super().__init__(app, id)
 
-        output_bucket = s3.Bucket(self, 'pdfOutputBucket')
+        output_bucket = s3.Bucket(self, 'pdfOutputBucket',
+            lifecycle_rules=[
+                s3.LifecycleRule(
+                    expiration=Duration.days(15)
+                )    
+            ]
+        )
         
         #lambda from docker image
         function = _lambda.DockerImageFunction(self, "pdfConvertFunction",
@@ -27,11 +33,11 @@ class PdfStack(Stack):
                  "FONTCONFIG_FILE": "/var/task/fonts/fonts.conf",
                  "BUCKET": output_bucket.bucket_name
             },
-            memory_size=1000,  
+            memory_size=1024*4,  
         )
         
         # The function needs to download and upload files
-        output_bucket.grant_write(function)
+        output_bucket.grant_read_write(function)
         
         api = apigw.LambdaRestApi(
             self, 'api',

@@ -2,6 +2,16 @@
  "Resources": {
   "pdfOutputBucket917D0501": {
    "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 15,
+       "Status": "Enabled"
+      }
+     ]
+    }
+   },
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
@@ -51,6 +61,9 @@
        "Action": [
         "s3:Abort*",
         "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
         "s3:PutObject",
         "s3:PutObjectLegalHold",
         "s3:PutObjectRetention",
@@ -100,7 +113,7 @@
    "Properties": {
     "Code": {
      "ImageUri": {
-      "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:78198c444af83f95447ddd1c678e875976d98bf56390800dfdd29c81a37b6b00"
+      "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:448c4a9eb1f41c4f55085debec497562ca864cabddcbdbbd29397fd44f7b1809"
      }
     },
     "Role": {
@@ -118,7 +131,7 @@
       }
      }
     },
-    "MemorySize": 1000,
+    "MemorySize": 4096,
     "PackageType": "Image",
     "Timeout": 150
    },
@@ -128,7 +141,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "pdfStack/pdfConvertFunction/Resource",
-    "aws:asset:path": "asset.78198c444af83f95447ddd1c678e875976d98bf56390800dfdd29c81a37b6b00",
+    "aws:asset:path": "asset.448c4a9eb1f41c4f55085debec497562ca864cabddcbdbbd29397fd44f7b1809",
     "aws:asset:dockerfile-path": "Dockerfile",
     "aws:asset:property": "Code.ImageUri"
    }

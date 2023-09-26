@@ -17,7 +17,16 @@
                 "path": "pdfStack/pdfOutputBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
-                  "aws:cdk:cloudformation:props": {}
+                  "aws:cdk:cloudformation:props": {
+                    "lifecycleConfiguration": {
+                      "rules": [
+                        {
+                          "expirationInDays": 15,
+                          "status": "Enabled"
+                        }
+                      ]
+                    }
+                  }
                 },
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
@@ -101,6 +110,9 @@
                                   "Action": [
                                     "s3:Abort*",
                                     "s3:DeleteObject*",
+                                    "s3:GetBucket*",
+                                    "s3:GetObject*",
+                                    "s3:List*",
                                     "s3:PutObject",
                                     "s3:PutObjectLegalHold",
                                     "s3:PutObjectRetention",
@@ -193,7 +205,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "imageUri": {
-                        "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:78198c444af83f95447ddd1c678e875976d98bf56390800dfdd29c81a37b6b00"
+                        "Fn::Sub": "${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-${AWS::Region}:448c4a9eb1f41c4f55085debec497562ca864cabddcbdbbd29397fd44f7b1809"
                       }
                     },
                     "role": {
@@ -211,7 +223,7 @@
                         }
                       }
                     },
-                    "memorySize": 1000,
+                    "memorySize": 4096,
                     "packageType": "Image",
                     "timeout": 150
                   }

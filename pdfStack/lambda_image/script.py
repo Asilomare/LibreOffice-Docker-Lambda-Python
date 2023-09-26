@@ -4,6 +4,7 @@ import time
 import json 
 import boto3
 import base64
+import requests
 import subprocess
 from os import environ
 from lo_loader import load_libre_office
@@ -16,9 +17,11 @@ OfficeExecutablePath = load_libre_office()
 
 #def docToPdf(input_file_path, folder):
 def docToPdf(event, context):
+
     print(event)
-    base64_content = event['body']
-    decoded_content = base64.b64decode(base64_content)
+    link = json.loads(event['body'])['link']
+    
+    response = requests.get(link)
     
     file_name = str(time.time())
     file_extension = '.docx'
@@ -28,7 +31,7 @@ def docToPdf(event, context):
     
     # Write the decoded content to a local file
     with open(input_file_path, 'wb') as f:
-        f.write(decoded_content)
+        f.write(response.content)
     
     #Define CLI arguments for LibreOffice
     conv_cmd = f"{OfficeExecutablePath} --headless --norestore --invisible --nodefault --nofirststartwizard --nolockcheck --nologo --convert-to pdf:writer_pdf_Export --outdir /tmp {input_file_path}"
